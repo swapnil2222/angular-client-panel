@@ -1,0 +1,52 @@
+<div class="row">
+    <div class="col-md-6">
+        <a class="btn btn-link">
+            <i class="fa fa-home"></i>
+            Go To Dashboard
+        </a>
+    </div>
+    <div class="col-md-6"></div>
+</div>
+<div class="card">
+    <div class="card-header">
+        Add Client
+    </div>
+    <div class="card-body">
+        <form #addClientForm="ngForm" (ngSubmit)="onSubmit(addClientForm)">
+            <div class="form-group">
+                <label for="firstName">FirstName</label>
+                <input type="text" name="firstName" class="form-control" #clientFirstName="ngModel"
+                    [(ngModel)]="client.firstName"
+                    [ngClass]="{'is-invalid': clientFirstName.errors && clientFirstName.touched}" required
+                    minlength="2">
+                <div [hidden]="!clientFirstName.errors?.required" class="invalid-feedback">
+                    First Name Required
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="lastName">LastName</label>
+                <input type="text" name="lastName" class="form-control" #clientLastName="ngModel" [(ngModel)]="client.lastName"
+                    [ngClass]="{'is-invalid': clientLastName.errors && clientLastName.touched}" required minlength="2">
+                <div [hidden]="!clientLastName.errors?.required" class="invalid-feedback">
+                    Last Name Required
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="text" name="email" class="form-control" #clientEmail="ngModel" [(ngModel)]="client.email"
+                    [ngClass]="{'is-invalid': clientEmail.errors && clientEmail.touched}" required minlength="2">
+                <div [hidden]="!clientEmail.errors?.required" class="invalid-feedback">
+                    Email Name Required
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="balance">Balance</label>
+                <input name="balance" type="number" class="form-control" [(ngModel)]="client.balance" required
+                    #clientBalance="ngModel" [disabled]="disableBalanceOnAdd">
+            </div>
+            <div class="form-group">
+                <button class="btn btn-primary btn-block">Submit</button>
+            </div>
+        </form>
+    </div>
+</div>
